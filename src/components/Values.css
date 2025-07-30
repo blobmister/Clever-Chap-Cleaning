@@ -1,0 +1,10 @@
+.values {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondary-color);
+    color: white;
+    padding-inline: calc((100vw - 1200px)/2);
+    padding-block: 50px;
+}

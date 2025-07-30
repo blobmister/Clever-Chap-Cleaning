@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Emily Johnson",
+    "review": "Absolutely loved the service! Everything was handled professionally and on time. Would definitely recommend to friends and family.",
+    "score": 4.5
+  },
+  {
+    "name": "Michael Lee",
+    "review": "Great experience overall. The team was very supportive and made everything easy for us.",
+    "score": 4
+  },
+  {
+    "name": "Sofia Martinez",
+    "review": "Exceeded my expectations! Very efficient and friendly team. I was impressed by how smooth the whole process was.",
+    "score": 5
+  },
+  {
+    "name": "David Nguyen",
+    "review": "Everything was handled perfectly. Communication was clear and timely, and I felt well taken care of.",
+    "score": 4.5
+  },
+  {
+    "name": "Olivia Brown",
+    "review": "Fantastic from start to finish. They made sure every detail was covered and kept me in the loop the whole time.",
+    "score": 5
+  },
+  {
+    "name": "Liam Wilson",
+    "review": "Really satisfied with the service. The staff was helpful and the whole process went smoothly.",
+    "score": 4
+  },
+  {
+    "name": "Isabella Davis",
+    "review": "Smooth process, friendly team, and great results. I’m really happy with how everything turned out.",
+    "score": 4.5
+  },
+  {
+    "name": "James Patel",
+    "review": "The experience was outstanding. Everything was clear and efficient. Highly recommended!",
+    "score": 5
+  },
+  {
+    "name": "Grace Thompson",
+    "review": "Impressive service! They really went above and beyond to help me. Will use them again.",
+    "score": 5
+  },
+  {
+    "name": "Noah Robinson",
+    "review": "The team was punctual and professional. Very smooth experience from start to finish.",
+    "score": 4.5
+  }
+]

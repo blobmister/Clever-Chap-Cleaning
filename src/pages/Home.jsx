@@ -2,14 +2,15 @@ import NavBar from '../components/NavBar.jsx';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "./home.css";
-import residential from '../assets/Residential.png';
-import commercial from '../assets/Commercial.png';
-import agedCare from '../assets/Aged Care.png';
-import endOfLease from '../assets/End of Lease.png';
 import Reviews from '../components/Reviews.jsx';
+import ServiceMap from '../components/ServiceMap.jsx';
+import Values from '../components/Values.jsx';
+import Services from '../components/Services.jsx';
+import { OwnerProfile, TeamProfile } from '../components/Profile.jsx';
+import Footer from '../components/Footer.jsx'
 
 
-function Card1() {
+function Title() {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -18,36 +19,34 @@ function Card1() {
     }, []);
 
     return (
-        <div className='card1'>
+        <div className='title'>
             <div className={`text ${isVisible ? 'active' : ''}`}>
                 <h1>Professional Cleaning Services</h1>
-                <Link to='/quote'><button>Get Free Quote!</button></Link>
+                <Link to='/quote'><button>GET FREE QUOTE</button></Link>
             </div>
         </div>
     );
 }
 
-function Card2() {
-    function ServiceElement({ name , img }) {
-        return <Link to='/quote'>
-            <li className='service-element'>
-            <img className='service-icon' src={img} alt={ name }/>
-            <p>{name}</p>
-            </li>
-        </Link>
-    }
-    
+function Card3() {
     return (
-        <div className='card2'>
-            <h1>Our Services</h1>
-            <ul className='services'>
-                <ServiceElement name="Residential" img={ residential }/>
-                <ServiceElement name="Commercial" img={ commercial }/>
-                <ServiceElement name="Aged Care" img={ agedCare }/>
-                <ServiceElement name="End of Lease" img={ endOfLease }/>
-            </ul>
+        <div className='card3'>
+            <div className='text'>
+                <h2>Service Area</h2>
+                <p> 
+                    We proudly offer professional cleaning services across a wide area of Sydney. 
+                    Our team serves homes and businesses in the following council regions: Blacktown City Council, 
+                    Penrith City Council, City of Parramatta Council, The Hills Shire, Fairfield City Council, 
+                    Liverpool City Council, Canterbury-Bankstown Council, Cumberland City Council, Strathfield Municipal Council, 
+                    Burwood Municipal Council, Inner West Council, and Sydney City Council. 
+                    Whether you’re looking for a one-off deep clean or regular maintenance, we’re here to help keep your space spotless.
+                </p>
+            </div>
+
+            <ServiceMap className='map' />
+            
         </div>
-    );
+    )
 }
 
 
@@ -56,9 +55,14 @@ export default function Home() {
     return (
         <div>
             <NavBar />
-            <Card1 />
-            <Card2 />
+            <Title />
+            <Services />
             <Reviews/>
+            <Card3 />
+            <Values />
+            <OwnerProfile />
+            <TeamProfile />
+            <Footer />
         </div>
     )
 }

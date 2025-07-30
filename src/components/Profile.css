@@ -1,0 +1,50 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: calc((100vw - 1200px)/2);
+    padding-block: 30px;
+    box-sizing: border-box;
+}
+
+
+.owner {
+    background-color: white;
+}
+
+.team {
+    background-color: var(--bg1);
+}
+
+
+.content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.content *{
+    flex-grow: 1 1 0;
+    min-width: 0;
+}
+
+.content img {
+    max-width: 100%;
+    height: auto;
+}
+
+.content .text-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    max-width: 50%;
+}
+
+.text-wrapper p {
+    max-width: 100%;
+}
+
+

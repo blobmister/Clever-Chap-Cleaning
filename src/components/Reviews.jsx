@@ -1,36 +1,31 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import './Reviews.css';
+import reviews from '../reviews.json';
+
+function StarRating({ rating }) {
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 >= 0.25 && rating % 1 < 0.75;
+    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+    const stars = [];
+
+    for (let i = 0; i < fullStars; i++) {
+    stars.push(<span key={`full-${i}`} className="star full">★</span>);
+    }
+
+    if (hasHalfStar) {
+    stars.push(<span key="half" className="star half">⯨</span>); // You can substitute with SVG or custom character
+    }
+
+    for (let i = 0; i < emptyStars; i++) {
+    stars.push(<span key={`empty-${i}`} className="star empty">☆</span>);
+    }
+
+    return <div className="star-rating">{stars}</div>;
+}
 
 function ReviewPanel() {
-    const reviews = [
-        { 
-            name: "John Doe",
-            review: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis optio magnam sit soluta impedit quis dolor delectus maiores, harum consequuntur? Eos culpa aspernatur modi iure ad nobis itaque nisi? Et.",
-            score: "5/5"
-        },
-        { 
-            name: "Jane Doe",
-            review: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis optio magnam sit soluta impedit quis dolor delectus maiores, harum consequuntur? Eos culpa aspernatur modi iure ad nobis itaque nisi? Et.",
-            score: "5/5"
-        },
-        { 
-            name: "Eljohn Mercado",
-            review: "Working like a slave",
-            score: "0/5"
-        },
-        { 
-            name: "William Smith",
-            review: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis optio magnam sit soluta impedit quis dolor delectus maiores, harum consequuntur? Eos culpa aspernatur modi iure ad nobis itaque nisi? Et.",
-            score: "3/5"
-        },
-        { 
-            name: "John Doe",
-            review: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis optio magnam sit soluta impedit quis dolor delectus maiores, harum consequuntur? Eos culpa aspernatur modi iure ad nobis itaque nisi? Et.",
-            score: "5/5"
-        },
-    ];
-
     const responsive = {
         superLargeDesktop: {
           // the naming can be any, depends on you.
@@ -53,7 +48,7 @@ function ReviewPanel() {
 
     return (
         
-        <div class='wrapper'>
+        <div className='wrapper'>
         <Carousel responsive={responsive} 
         infinite={true} 
         autoPlay={true} 
@@ -65,7 +60,7 @@ function ReviewPanel() {
                 <div key={index} className='review-slide'>
                     <h3>{review.name}</h3>
                     <p>{review.review}</p>
-                    <p>{review.score}</p>
+                    <StarRating rating={review.score}/>
                 </div>
             ))}
         </Carousel>
@@ -78,7 +73,7 @@ export default function Reviews() {
 
     return (
         <div className='reviews'>
-            <h1>Read what our <span class='accent'>customers</span> have to say</h1>
+            <h2>Read what our <span className='accent'>customers</span> have to say</h2>
             <ReviewPanel />
         </div>
     )
