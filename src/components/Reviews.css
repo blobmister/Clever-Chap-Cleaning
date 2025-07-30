@@ -1,0 +1,50 @@
+.reviews {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    padding-block: 50px;
+    background-color: var(--bg1);
+    height: auto;
+    width: 100%;
+}
+
+.review-slide {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    color: black;
+    height: 100%;
+    overflow-y: auto;
+    width: 20em;
+    align-self: center;
+}
+
+.react-multi-carousel-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+}   
+
+.accent {
+    color: var(--primary-color);
+}
+
+
+.react-multi-carousel-dot button {
+    background: var(--secondary-color);
+    border: 0px;
+}
+
+.react-multi-carousel-dot--active button {
+    background: var(--primary-color) !important;
+}
