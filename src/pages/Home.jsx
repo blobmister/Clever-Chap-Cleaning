@@ -22,7 +22,7 @@ function Title() {
         <div className='title'>
             <div className={`text ${isVisible ? 'active' : ''}`}>
                 <h1>Professional Cleaning Services</h1>
-                <Link to='/quote'><button>GET FREE QUOTE</button></Link>
+                <Link to='/get-quote'><button>GET FREE QUOTE</button></Link>
             </div>
         </div>
     );

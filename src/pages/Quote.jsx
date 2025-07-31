@@ -5,6 +5,7 @@ import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import { useJsApiLoader } from '@react-google-maps/api';
 import usePlacesAutocomplete, { getGeocode, getDetails } from 'use-places-autocomplete';
+import { Helmet } from "react-helmet";
 
 const libraries = ['places'];
 const cleaningOptions = [
@@ -27,33 +28,6 @@ const cleaningOptions = [
 	{ type: 'Commercial', id: 'window', label: 'Window Cleaning' },
 	{ type: 'Commercial', id: 'tile', label: 'Tile & Grout Cleaning' },
 ];
-
-function useRecaptcha(siteKey) {
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    if (window.grecaptcha) {
-      setReady(true);
-      return;
-    }
-
-    const script = document.createElement('script');
-    script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
-    script.async = true;
-    script.defer = true;
-    script.onload = () => {
-      setReady(true);
-    };
-    document.head.appendChild(script);
-
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, [siteKey]);
-
-  return ready;
-}
-
 
 function AddressAutocomplete({ setSelectedDetails }) {
 	const {
@@ -134,7 +108,6 @@ function HeadingBar() {
 function QuoteForm({ isLoaded, loadError }) {
 	const [didError, setError] = useState(false);
 	const [cleaningType, changeCleaningType] = useState('Residential');
-	const [submitting, setSubmitting] = useState(false);
 
 	const [address1, setAddress1] = useState('');
 	const [address2, setAddress2] = useState('');
@@ -146,6 +119,7 @@ function QuoteForm({ isLoaded, loadError }) {
 		if (loadError) setError(true);
 	}, [loadError]);
 
+
 	const handleAddressSelect = (details) => {
 		setAddress1(details.address1);
 		setAddress2(details.address2);
@@ -154,64 +128,13 @@ function QuoteForm({ isLoaded, loadError }) {
 		setPostcode(details.postcode);
 	};
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		setSubmitting(true);
-
-		if (!window.grecaptcha) {
-			alert('reCAPTCHA not loaded');
-			setSubmitting(false);
-			return;
-		}
-
-		try {
-			const token = await window.grecaptcha.execute('6LfvPpUrAAAAANBa2a3nfdCIUbO0kEH9QMtg0RjN', { action: 'submit' });
-
-			// Gather form data manually (you can enhance this by using refs or form libraries)
-			const formData = new FormData(e.target);
-
-			// Append recaptcha token to formData
-			formData.append('recaptchaToken', token);
-
-			// Convert FormData to JSON object
-			const formJSON = {};
-			formData.forEach((value, key) => {
-				// Handle multiple checkboxes with same name by accumulating values in array
-				if (formJSON[key]) {
-					if (Array.isArray(formJSON[key])) {
-						formJSON[key].push(value);
-					} else {
-						formJSON[key] = [formJSON[key], value];
-					}
-				} else {
-					formJSON[key] = value;
-				}
-			});
-
-			// TODO: Replace with your API endpoint or Firebase function call
-			console.log('Form submission data:', formJSON);
-
-			// Simulate success
-			alert('Form submitted successfully!');
-
-			// Optionally reset form and address states
-			e.target.reset();
-			setAddress1('');
-			setAddress2('');
-			setCity('');
-			setState('');
-			setPostcode('');
-		} catch (error) {
-			console.error('Submit error:', error);
-			alert('Error submitting form');
-		} finally {
-			setSubmitting(false);
-		}
-	};
-
 	return (
 		<div className='form-container'>
-			<form onSubmit={handleSubmit}>
+			<Helmet>
+				<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+      		</Helmet>
+
+			<form action="https://submit-form.com/5zs3ehUvy">
 				<fieldset className='contact'>
 					<h2>Contact Details</h2>
 					<hr />
@@ -237,7 +160,7 @@ function QuoteForm({ isLoaded, loadError }) {
 						<input
 							type='tel'
 							id='phone-number'
-							name='phone-number'
+							name='phone'
 							placeholder='0412345678'
 							required
 						/>
@@ -257,6 +180,7 @@ function QuoteForm({ isLoaded, loadError }) {
 							type='text'
 							id='address1'
 							value={address1}
+							name='address1'
 							onChange={(e) => setAddress1(e.target.value)}
 							required
 						/>
@@ -267,6 +191,7 @@ function QuoteForm({ isLoaded, loadError }) {
 						<input
 							type='text'
 							id='address2'
+							name='address2'
 							value={address2}
 							onChange={(e) => setAddress2(e.target.value)}
 						/>
@@ -278,6 +203,7 @@ function QuoteForm({ isLoaded, loadError }) {
 							type='text'
 							id='city'
 							value={city}
+							name='city'
 							onChange={(e) => setCity(e.target.value)}
 							required
 						/>
@@ -288,6 +214,7 @@ function QuoteForm({ isLoaded, loadError }) {
 						<input
 							type='text'
 							id='state'
+							name='state'
 							value={state}
 							onChange={(e) => setState(e.target.value)}
 							required
@@ -299,6 +226,7 @@ function QuoteForm({ isLoaded, loadError }) {
 						<input
 							type='number'
 							id='postcode'
+							name='postcode'
 							value={postcode}
 							onChange={(e) => setPostcode(e.target.value)}
 							required
@@ -334,7 +262,7 @@ function QuoteForm({ isLoaded, loadError }) {
 							if (type === cleaningType) {
 								return (
 									<label key={id} htmlFor={id} className='checkbox-option'>
-										<input type='checkbox' id={id} name='cleaningType' value={id}></input>
+										<input type='checkbox' id={id} name='cleaning-type' value={label}></input>
 										<span>{label}</span>
 									</label>
 								);
@@ -348,13 +276,13 @@ function QuoteForm({ isLoaded, loadError }) {
 						{cleaningType === 'Residential' ? (
 							<div className='input-field'>
 								<label htmlFor='no-of-bedrooms'>Number of Bedrooms</label>
-								<input type='number' id='no-of-bedrooms' name='number of bedrooms' required />
+								<input type='number' id='no-of-bedrooms' name='bedrooms' required />
 							</div>
 						) : null}
 
 						<div className='input-field'>
 							<label htmlFor='no-of-bathrooms'>Number of Bathrooms</label>
-							<input type='number' id='no-of-bathrooms' name='number of bathrooms' required />
+							<input type='number' id='no-of-bathrooms' name='bathrooms' required />
 						</div>
 					</div>
 
@@ -362,15 +290,17 @@ function QuoteForm({ isLoaded, loadError }) {
 						<label htmlFor='further-requests'>Further Requests</label>
 						<textarea
 							id='further-requests'
-							name='furtherRequests'
+							name='extra'
 							rows='5'
 							cols='40'
 							placeholder='Let us know if you have any special instructions or requests'
 						/>
 					</div>
 				</fieldset>
-				<button type='submit' disabled={submitting}>
-					{submitting ? 'Submitting...' : 'Submit'}
+
+				<div className="g-recaptcha" data-sitekey="6Ldcc5UrAAAAAMqEBbksUjt7G4Yy27yZkiJ1rxZt"></div>
+				<button type='submit'>
+					Submit
 				</button>
 			</form>
 		</div>
@@ -378,6 +308,10 @@ function QuoteForm({ isLoaded, loadError }) {
 }
 
 export default function Quote() {
+	const [loading, setLoading] = useState(false);
+  	const [success, setSuccess] = useState(false);
+	const [dbError, setdbError] = useState(false);
+
 	const { isLoaded, loadError } = useJsApiLoader({
 		googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
 		libraries,
@@ -388,7 +322,7 @@ export default function Quote() {
 			<NavBar />
 			<HeadingBar />
 			<div className='form-wrapper'>
-				<QuoteForm loadError={loadError} isLoaded={isLoaded} />
+				<QuoteForm loading={loading} setLoading={setLoading} success={success} setSuccess={setSuccess} dbError={dbError} setdbError={setdbError} loadError={loadError} isLoaded={isLoaded} />
 			</div>
 			<Footer />
 		</div>

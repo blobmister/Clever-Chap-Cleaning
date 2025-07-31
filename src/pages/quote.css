@@ -167,4 +167,6 @@ input:valid {
     border: 2px solid var(--primary-color);
 }
 
-
+.g-recaptcha {
+    margin: 35px;
+}
