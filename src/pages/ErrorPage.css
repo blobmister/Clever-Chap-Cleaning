@@ -1,0 +1,9 @@
+.err-page {
+    height: 92vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.err-content {
+    flex: 1 1 auto;
+}
