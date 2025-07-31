@@ -90,12 +90,12 @@ fieldset {
     display: flex;
     flex-direction: column;
     background: var(--bg1);
-    border: 1px solid var(--secondary-color);
+    border: 2px solid var(--secondary-color);
 }
 
 .autocomplete-suggestions li {
     padding: 5px;
-    border: 1px solid var(--secondary-color);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
 }
 
 .autocomplete-suggestions li:hover {

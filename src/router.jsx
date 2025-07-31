@@ -1,16 +1,23 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home.jsx";
-import Quote from "./pages/Quote.jsx"
+import Quote from "./pages/Quote.jsx";
+import Layout from "./Layout.jsx";
 
 const router = createBrowserRouter([
-    {
-        path: "/",
+  {
+    path: "/",
+    element: <Layout />, 
+    children: [
+      {
+        index: true,
         element: <Home />,
-    },
-    {
-        path: "/get-quote",
-        element: <Quote />
-    }
+      },
+      {
+        path: "get-quote",
+        element: <Quote />,
+      },
+    ],
+  },
 ]);
 
 export default router;
