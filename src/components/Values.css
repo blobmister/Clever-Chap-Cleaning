@@ -5,6 +5,7 @@
     align-items: center;
     background-color: var(--secondary-color);
     color: white;
-    padding-inline: calc((100vw - 1200px)/2);
+    padding-inline: max(50px, calc((100vw - 1200px)/2));
     padding-block: 50px;
+    box-sizing: content-box;
 }

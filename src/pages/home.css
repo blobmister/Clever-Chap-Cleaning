@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: row;
   height: 30em;
-  padding-inline: calc((100vw - 1200px)/2);
+  padding-inline: max(50px, calc((100vw - 1200px)/2));
   align-items: center;
   box-sizing: border-box;
   margin: 0px;
@@ -50,19 +50,32 @@ a {
 .card3 {
   display: flex;
   flex-direction: row;
-  height: 30em;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  padding-inline: calc((100vw - 1200px)/2);
+  padding-inline: max(50px, calc((100vw - 1200px)/2));
   gap: 100px;
   padding-block: 30px;
 }
 
-.map {
-  max-height: 30em;
-  max-width: 600px;
-  padding: 20px;
+.map-wrapper {
+  flex: 1;
   box-sizing: border-box;
 }
+
+.card3 .text {
+  flex: 1;
+  box-sizing: border-box;
+}
+
+@media only screen and (max-width: 740px) {
+
+  .card3 {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    box-sizing: border-box;
+  }
+
+} 
 
 

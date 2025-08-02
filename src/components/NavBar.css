@@ -7,7 +7,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    padding-inline: calc((100vw - 1200px)/2);
+    padding-inline: max(50px, calc((100vw - 1200px)/2));
     box-sizing: border-box;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: black;
@@ -125,7 +125,6 @@ ul {
         display: flex;
         flex-direction: column;
         width: 100%;
-        padding-inline: 50px;
         padding-block: 15px;
     }
 
@@ -137,8 +136,7 @@ ul {
     }
 
     .nav-list.show {
-        max-height: 500px;
-        
+        max-height: 1000px;
     }
 
     .nav-list li {

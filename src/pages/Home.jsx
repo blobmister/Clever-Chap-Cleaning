@@ -43,7 +43,9 @@ function Card3() {
                 </p>
             </div>
 
-            <ServiceMap className='map' />
+            <div className="map-wrapper">
+                <ServiceMap />
+            </div>
             
         </div>
     )

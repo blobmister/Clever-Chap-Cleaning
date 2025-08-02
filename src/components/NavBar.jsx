@@ -42,7 +42,10 @@ export default function NavBar() {
                 <li><Link to='/get-quote' className='nav-link'>Quote Price</Link></li>
 
                 <li 
-                    onMouseEnter={() => toggleServicesDrop(true)} 
+                    onMouseEnter={() => {
+                        toggleServicesDrop(true)
+                        toggleAboutClick(false);
+                    }} 
                     onMouseLeave={() => toggleServicesDrop(false)} 
                     onClick={() => {
                         toggleServiceClick(prev => !prev);
@@ -59,8 +62,11 @@ export default function NavBar() {
                     />
                 </li>
 
-                <li onMouseEnter={() => 
-                    toggleAboutDrop(true)} 
+                <li onMouseEnter={() => {
+                        toggleAboutDrop(true);
+                        toggleServiceClick(false);
+                    }
+                } 
                     onMouseLeave={() => toggleAboutDrop(false)}
                     onClick={() => {
                         toggleAboutClick(prev => !prev)
