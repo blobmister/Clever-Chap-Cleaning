@@ -60,17 +60,6 @@
   width: auto;
 }
 
-.star.full {
-  fill: var(--primary-color);
-}
-
-.star.half {
-  fill: var(--primary-color);
-}
-
-.star.empty {
-  fill: none;
-}
 
 @media only screen and (max-width: 740px) {
   .reviews {
