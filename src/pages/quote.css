@@ -6,8 +6,10 @@
     flex-direction: column;
     background-color: var(--secondary-color);
     color: white;
-    padding-inline: max(50px, calc((100vw-1200px)/2));
+    padding-inline: max(50px, calc((100vw - 1200px)/2));
     padding-block: 50px;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 .form-wrapper {
