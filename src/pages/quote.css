@@ -170,3 +170,18 @@ input:valid {
 .g-recaptcha {
     margin: 35px;
 }
+
+@media only screen and (max-width: 740px) {
+    .buttons {
+        flex-direction: column;
+    }
+
+    .checkbox-form {
+       display: flex;
+       flex-direction: column;
+    }
+
+    .room-count {
+        flex-direction: column;
+    }
+}
