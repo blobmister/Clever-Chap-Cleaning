@@ -2,6 +2,8 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import './Reviews.css';
 import reviews from '../reviews.json';
+import star from '../assets/star.svg';
+import halfStar from '../assets/half-star.svg';
 
 function StarRating({ rating }) {
     const fullStars = Math.floor(rating);
@@ -11,15 +13,15 @@ function StarRating({ rating }) {
     const stars = [];
 
     for (let i = 0; i < fullStars; i++) {
-    stars.push(<span key={`full-${i}`} className="star full">★</span>);
+    stars.push(<img src={star} key={`full-${i}`} className="star full"/>);
     }
 
     if (hasHalfStar) {
-    stars.push(<span key="half" className="star half">⯨</span>); // You can substitute with SVG or custom character
+    stars.push(<img src={halfStar} key="half" className="star half"/>); // You can substitute with SVG or custom character
     }
 
     for (let i = 0; i < emptyStars; i++) {
-    stars.push(<span key={`empty-${i}`} className="star empty">☆</span>);
+    stars.push(<img src={star} key={`empty-${i}`} className="star empty"/>);
     }
 
     return <div className="star-rating">{stars}</div>;

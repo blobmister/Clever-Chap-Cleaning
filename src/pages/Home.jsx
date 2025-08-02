@@ -7,7 +7,8 @@ import ServiceMap from '../components/ServiceMap.jsx';
 import Values from '../components/Values.jsx';
 import Services from '../components/Services.jsx';
 import { OwnerProfile, TeamProfile } from '../components/Profile.jsx';
-import Footer from '../components/Footer.jsx'
+import Footer from '../components/Footer.jsx';
+
 
 
 function Title() {

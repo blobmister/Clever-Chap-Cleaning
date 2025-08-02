@@ -55,16 +55,21 @@
   font-size: 24px;
 }
 
+.star {
+  height: 10px;
+  width: auto;
+}
+
 .star.full {
-  color: var(--primary-color);
+  fill: var(--primary-color);
 }
 
 .star.half {
-  color: var(--primary-color);
+  fill: var(--primary-color);
 }
 
 .star.empty {
-  opacity: 0;
+  fill: none;
 }
 
 @media only screen and (max-width: 740px) {
