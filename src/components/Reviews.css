@@ -61,6 +61,10 @@
 }
 
 
+.star.empty {
+  opacity: 0;
+}
+
 @media only screen and (max-width: 740px) {
   .reviews {
     padding: 50px;
