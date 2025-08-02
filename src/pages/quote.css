@@ -184,4 +184,13 @@ input:valid {
     .room-count {
         flex-direction: column;
     }
+
+    .form-wrapper {
+        padding: 0px;
+    }
+
+    .form-container {
+        border: 0px;
+        padding: 25px;
+    }
 }
