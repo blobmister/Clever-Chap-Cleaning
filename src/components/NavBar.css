@@ -5,7 +5,6 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    height: 8vh;
     align-items: center;
     padding: 15px;
     padding-inline: calc((100vw - 1200px)/2);
@@ -13,6 +12,11 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: black;
     z-index: 10000;
+    padding-block: 50px;
+}
+
+.hamburger {
+    display: none;
 }
 
 ul {
@@ -96,4 +100,69 @@ ul {
 
 .dropdown > *:not(:last-child) {
     border-bottom: 1px solid var(--secondary-color);
+}
+
+@media only screen and (max-width: 740px) {
+    .nav-list {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        max-height: 0;
+        transition: max-height 0.4s ease-in-out;
+        overflow: hidden;
+    }
+
+    .hamburger {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color:rgba(0, 0, 0, 0);
+        box-shadow: 0 0 0 ;
+    }
+
+    .navbar {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding-inline: 50px;
+        padding-block: 15px;
+    }
+
+    .row1 {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .nav-list.show {
+        max-height: 500px;
+        
+    }
+
+    .nav-list li {
+        width: 100%;
+    }
+
+    .nav-link {
+        background-color: white;
+        width: 100%;
+        height: 100%;
+    }
+
+    .dropdown {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        max-height: 0px;
+        width: 100%;
+        transition: max-height 0.4 ease-in-out;
+        position: static;
+        box-shadow: 0 0 0;
+    }
+
+    .active {
+        max-height: 500px;
+    }
 }
